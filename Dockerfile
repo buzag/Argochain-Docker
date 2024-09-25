@@ -31,7 +31,7 @@ LABEL org.opencontainers.image.author="BuzaG" \
       org.opencontainers.image.version="0.1"
 
 # Install necessary runtime dependencies
-RUN apk add --no-cache libssl1.1 curl jq
+RUN apk add --no-cache libssl3 curl jq
 
 WORKDIR /app
 
