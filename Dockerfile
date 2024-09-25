@@ -31,7 +31,7 @@ LABEL org.opencontainers.image.author="BuzaG" \
       org.opencontainers.image.version="0.1"
 
 # Install necessary runtime dependencies
-RUN apk add --no-cache libssl3 curl jq
+RUN apk add --no-cache curl jq libssl3
 
 WORKDIR /app
 
@@ -52,5 +52,5 @@ RUN mkdir -p /argochain/opt /argochain/log /argochain/session && \
 # Expose necessary ports
 EXPOSE 30333 9944
 
-# Default command to run the application
-CMD ["/app/init-and-run.sh", "${NODE_NAME}"]
+# Default command to run the application using sh
+CMD ["/bin/sh", "/app/init-and-run.sh", "$NODE_NAME"]
