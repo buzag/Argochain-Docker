@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Defaults
-base_path=/var/log/argochain
+base_path=/argochain/base
 chain_spec=minervaRaw.json
 
 # Function to generate key and insert into node

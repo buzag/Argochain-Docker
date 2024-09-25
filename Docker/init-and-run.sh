@@ -1,6 +1,7 @@
 #!/bin/sh
 
-SESSION_KEY_FILE="/session/.session_key"
+BASE_PATH=/argochain/base
+SESSION_KEY_FILE="/argochain/.session_key"
 NODE_NAME="$1"
 
 # One-time initialization
@@ -24,4 +25,4 @@ if [ ! -f "$SESSION_KEY_FILE" ] || [ ! -s "$SESSION_KEY_FILE" ]; then
 fi
 
 # Start the main application
-/app/argochain --chain minervaRaw.json --base-path /var/opt/argochain --port 30333 --rpc-port 9944 --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" --name "$NODE_NAME" --validator --rpc-methods Unsafe --unsafe-rpc-external --rpc-max-connections 100 --rpc-cors all
+/app/argochain --chain minervaRaw.json --base-path $BASE_PATH --port 30333 --rpc-port 9944 --telemetry-url "wss://telemetry.polkadot.io/submit/ 0" --name $NODE_NAME --validator --rpc-methods Unsafe --unsafe-rpc-external --rpc-max-connections 100 --rpc-cors all

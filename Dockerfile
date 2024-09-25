@@ -44,11 +44,8 @@ COPY --from=build /app/minervaRaw.json /app/minervaRaw.json
 COPY /Docker/init-and-run.sh /Docker/rotate_keys_docker.sh ./
 RUN chmod +x init-and-run.sh rotate_keys_docker.sh argochain
 
-# Create the /argochain directory and symlink the necessary paths
-RUN mkdir -p /argochain/opt /argochain/log /argochain/session && \
-    ln -sf /argochain/opt /var/opt/argochain && \
-    ln -sf /argochain/log /var/log/argochain && \
-    ln -sf /argochain/session /session
+# Create the /argochain directory
+RUN mkdir -p /argochain/base /argochain/keystore
 
 # Expose necessary ports
 EXPOSE 30333 9944
