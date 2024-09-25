@@ -23,15 +23,16 @@ RUN cargo build --release
 # Update minervaRaw.json
 RUN chmod +x ./update_bootnodes.sh && ./update_bootnodes.sh
 
-# Use a minimal Alpine-based image for the production stage
-FROM alpine:latest AS prod
+# Use a minimal Debian-based image for the production stage
+FROM debian:bullseye-slim AS prod
 
 LABEL org.opencontainers.image.author="BuzaG" \
       org.opencontainers.image.description="ArgoChain Validator Node" \
       org.opencontainers.image.version="0.1"
 
 # Install necessary runtime dependencies
-RUN apk add --no-cache curl jq libssl3
+RUN apt-get update && apt-get install -y --no-install-recommends curl jq libssl3 ca-certificates && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -41,7 +42,7 @@ COPY --from=build /app/minervaRaw.json /app/minervaRaw.json
 
 # Prepare the necessary scripts and set executable permissions
 COPY /Docker/init-and-run.sh /Docker/rotate_keys_docker.sh ./
-RUN chmod +x init-and-run.sh rotate_keys_docker.sh
+RUN chmod +x init-and-run.sh rotate_keys_docker.sh argochain
 
 # Create the /argochain directory and symlink the necessary paths
 RUN mkdir -p /argochain/opt /argochain/log /argochain/session && \
