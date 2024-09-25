@@ -31,7 +31,7 @@ LABEL org.opencontainers.image.author="BuzaG" \
       org.opencontainers.image.version="0.1"
 
 # Install necessary runtime dependencies
-RUN apt-get update && apt-get install -y --no-install-recommends curl jq libssl3 ca-certificates && \
+RUN apt-get update && apt-get install -y --no-install-recommends curl jq libssl1.1 ca-certificates && \
     rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
