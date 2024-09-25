@@ -24,7 +24,7 @@ RUN cargo build --release
 RUN chmod +x ./update_bootnodes.sh && ./update_bootnodes.sh
 
 # Use a minimal Debian-based image for the production stage
-FROM debian:bullseye-slim AS prod
+FROM debian:latest AS prod
 
 LABEL org.opencontainers.image.author="BuzaG" \
       org.opencontainers.image.description="ArgoChain Validator Node" \
