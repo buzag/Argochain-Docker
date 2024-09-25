@@ -32,7 +32,7 @@ jobs:
       with:
         context: . # This tells Docker to use the current directory (which contains your Dockerfile)
         push: true
-        tags: your-dockerhub-username/argochain-validator:latest
+        tags: ${{ secrets.DOCKER_USERNAME }}/argochain-validator:latest
 
     # Optionally log out from Docker Hub
     - name: Log out from Docker Hub
