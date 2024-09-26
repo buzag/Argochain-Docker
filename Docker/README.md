@@ -5,7 +5,7 @@ Make sure, ***docker is installed***.
 Change `NODE_NAME=mynodename` and run
 
 ```
-docker stop argochain-validator && docker rm argochain-validator && docker run -d --pull always --name argochain-validator -p 30333:30333 -p 9944:9944 -v ${HOME}/argochain-data:/argochain -e NODE_NAME=mynodename --restart unless-stopped buzag/argochain-validator
+docker run -d --pull always --name argochain-validator -p 30333:30333 -p 9944:9944 -v ${HOME}/argochain-data:/argochain -e NODE_NAME=mynodename --restart unless-stopped buzag/argochain-validator
 ```
 
 If you restart the host, the service will come up automatically.
