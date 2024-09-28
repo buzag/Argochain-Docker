@@ -15,9 +15,7 @@ COPY . .
 
 # Add and set the nightly toolchain and WASM target in a single step
 RUN rustup update stable && \
-    rustup install nightly && \
-    rustup default nightly && \
-    rustup target add wasm32-unknown-unknown --toolchain nightly
+    rustup target add wasm32-unknown-unknown --toolchain stable
 
 # Build the project in release mode
 RUN cargo build --release
