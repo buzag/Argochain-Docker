@@ -34,7 +34,7 @@ LABEL org.opencontainers.image.author="BuzaG" \
 
 # Install necessary runtime dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends curl jq libssl3 ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
+    apt clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -51,6 +51,10 @@ RUN mkdir -p /argochain/base /argochain/keystore
 
 # Expose necessary ports
 EXPOSE 30333 9944
+
+# Healthcheck to ensure the service is running
+HEALTHCHECK --interval=30s --timeout=10s --start-period=10s \
+  CMD curl -f http://localhost:9944/health || exit 1
 
 # Default command to run the application using sh
 CMD ["/bin/sh", "/app/init-and-run.sh", "$NODE_NAME"]
