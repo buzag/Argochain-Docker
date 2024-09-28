@@ -14,7 +14,8 @@ WORKDIR /app
 COPY . .
 
 # Add and set the nightly toolchain and WASM target in a single step
-RUN rustup install nightly && \
+RUN rustup update stable && \
+    rustup install nightly && \
     rustup default nightly && \
     rustup target add wasm32-unknown-unknown --toolchain nightly
 
