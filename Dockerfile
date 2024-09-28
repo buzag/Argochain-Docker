@@ -13,8 +13,9 @@ RUN apt update && apt upgrade -y && \
 WORKDIR /app
 COPY . .
 
-# Add the nightly toolchain and WASM target in a single step
-RUN rustup update nightly && \
+# Add and set the nightly toolchain and WASM target in a single step
+RUN rustup install nightly && \
+    rustup default nightly && \
     rustup target add wasm32-unknown-unknown --toolchain nightly
 
 # Build the project in release mode
