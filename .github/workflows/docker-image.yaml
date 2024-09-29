@@ -33,6 +33,7 @@ jobs:
         with:
           context: . # This tells Docker to use the current directory (which contains your Dockerfile)
           push: true
+          platforms: linux/amd64,linux/arm64
           tags: >
             ${{ secrets.DOCKER_USERNAME }}/argochain-validator:${{ github.ref == 'refs/heads/main' && 'latest' || 'dev' }}
 
